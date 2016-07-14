@@ -4,17 +4,18 @@ import java.io.FileNotFoundException;
 import java.text.ParseException;
 
 import com.test.buscape.api.business.interfaces.CommandBusiness;
-import com.test.buscape.api.core.enums.CommandEnum;
+import com.test.buscape.api.core.enums.Command;
+import com.test.buscape.api.core.enums.CompassChanges;
 import com.test.buscape.api.core.model.Coordinates;
 
 /**
- * Lendo log do jogo e aplicando as regras para geração do Ranking
+ * Classe de negócio que processa o comando e cria a coordenada
  * @author tbdea
  */
 public class CommandBusinessImpl implements CommandBusiness {
 
 	/**
-	 * Lendo e gerando resultado por linha do arquivo
+	 * Processando o comando
 	 * @param filePath
 	 * @return
 	 * @throws ParseException
@@ -26,16 +27,22 @@ public class CommandBusinessImpl implements CommandBusiness {
 		for(int i=0; i < commandLine.length(); i++) {
 			Character command = commandLine.charAt(i);
 			
-			switch (CommandEnum.getCommandByCharacter(command)) {
-				case LEFT:				
+			CompassChanges compassChanges = CompassChanges.getCompassChangeByCompassCurrent(coordinates.getCompassPoint());
+			switch (Command.getCommandByCharacter(command)) {
+				case UP:
+					coordinates.addZ();
 					break;
-				case RIGHT:				
+				case DOWN:
+					coordinates.subtractZ();
 					break;
-				case UP:				
+				case LEFT:
+					coordinates.setCompassPoint(compassChanges.getLeftPoint());
 					break;
-				case DOWN:				
+				case RIGHT:
+					coordinates.setCompassPoint(compassChanges.getRightPoint());
 					break;
-				case MOVE:				
+				case MOVE:
+					moveCoordinates(coordinates);
 					break;
 				default:
 					break;
@@ -45,4 +52,26 @@ public class CommandBusinessImpl implements CommandBusiness {
 		return coordinates;
 	}
 	
+	/**
+	 * Movimenta as cordenadas X e Y
+	 * @param coordinates
+	 */
+	private void moveCoordinates(Coordinates coordinates) {
+			switch(coordinates.getCompassPoint()) {
+				case NORTH:
+					coordinates.addY();
+					break;
+				case SOUTH:
+					coordinates.subtractY();
+					break;
+				case WEST:
+					coordinates.subtractX();
+					break;
+				case EAST:
+					coordinates.addX();
+					break;
+				default:
+					break;
+		}
+	}
 }

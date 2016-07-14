@@ -1,6 +1,11 @@
 package com.test.buscape.api.core.enums;
 
-public enum CommandEnum {
+/**
+ * Comandos para o submarino
+ * @author tbdea
+ *
+ */
+public enum Command {
 	
 	LEFT('L'),
 	RIGHT('R'),
@@ -11,7 +16,7 @@ public enum CommandEnum {
 	
 	private final Character command;
 	
-	private CommandEnum(Character command) {
+	private Command(Character command) {
 		this.command = command;
 	}
 
@@ -19,8 +24,13 @@ public enum CommandEnum {
 		return command;
 	}
 
-	public static CommandEnum getCommandByCharacter(Character c) {
-		for(CommandEnum commandEnum : values()) {
+	/**
+	 * Pegar o enum apartir do caracter do comando
+	 * @param c
+	 * @return
+	 */
+	public static Command getCommandByCharacter(Character c) {
+		for(Command commandEnum : values()) {
 			if(commandEnum.getCommand().equals(c)) {
 				return commandEnum;
 			}

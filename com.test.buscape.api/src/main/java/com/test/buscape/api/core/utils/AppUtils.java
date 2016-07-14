@@ -11,6 +11,6 @@ public final class AppUtils {
 	private static final String COMMAND_REGEX = "[LRUDM]*";
 	
 	public static boolean validateCommand(String command) {
-		return Pattern.compile(COMMAND_REGEX).matcher(command).matches();
+		return command.length() > 0 && Pattern.compile(COMMAND_REGEX).matcher(command).matches();
 	}	
 }

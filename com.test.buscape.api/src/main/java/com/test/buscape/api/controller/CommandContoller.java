@@ -5,6 +5,7 @@ import java.text.ParseException;
 
 import com.test.buscape.api.business.CommandBusinessImpl;
 import com.test.buscape.api.business.interfaces.CommandBusiness;
+import com.test.buscape.api.core.AppCore;
 import com.test.buscape.api.core.model.Coordinates;
 import com.test.buscape.api.core.utils.AppUtils;
 
@@ -43,7 +44,12 @@ public class CommandContoller {
 	 * @param submarineBusiness 
 	 */
 	private void printPosition(Coordinates coordinates) {		
-
+		String compassPoint = AppCore.getInstance().getProperties().getProperty(coordinates.getCompassPoint().getCompassPointProperty());
+		
+		System.out.println(coordinates.getX() + "," + 
+							coordinates.getY()  + "," + 
+							coordinates.getZ()    + "," + 
+							compassPoint);
 	}
 
 }

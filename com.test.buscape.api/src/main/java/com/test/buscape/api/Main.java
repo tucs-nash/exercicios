@@ -22,7 +22,7 @@ public class Main {
 				System.out.println(props.getProperty("buscape.label.filepath.input"));
 				Scanner commandInput = new Scanner(System.in);
 				if(commandInput.hasNext()) {
-					String commandLine = commandInput.nextLine();					
+					String commandLine = commandInput.nextLine().trim();					
 					CommandContoller commandContoller = new CommandContoller();
 					commandContoller.processCommand(commandLine);;
 				}

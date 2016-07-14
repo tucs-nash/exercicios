@@ -1,13 +1,21 @@
 package com.test.buscape.api.core.model;
 
+import com.test.buscape.api.core.enums.CompassPoint;
+
 /**
- * Classe da Partida
+ * Classe da Coordenatas
  * @author tbdea
  *
  */
 public class Coordinates {
 
-	private int x, y, z, pointCompass;
+	private int x, y, z;
+	
+	private CompassPoint compassPoint;
+	
+	public Coordinates() {
+		this.compassPoint = CompassPoint.NORTH;
+	}
 		
 	public int getX() {
 		return x;
@@ -50,11 +58,12 @@ public class Coordinates {
 	public void subtractZ() {
 		this.z--;		
 	}
-	
-	public int getPointCompass() {
-		return pointCompass;
+
+	public CompassPoint getCompassPoint() {
+		return compassPoint;
 	}
-	public void setPointCompass(int pointCompass) {
-		this.pointCompass = pointCompass;
-	}
+
+	public void setCompassPoint(CompassPoint compassPoint) {
+		this.compassPoint = compassPoint;
+	}	
 }
