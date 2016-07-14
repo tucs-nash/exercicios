@@ -5,7 +5,7 @@ import java.text.ParseException;
 
 import com.test.buscape.api.business.interfaces.CommandBusiness;
 import com.test.buscape.api.core.enums.Command;
-import com.test.buscape.api.core.enums.CompassChanges;
+import com.test.buscape.api.core.enums.CompassMapping;
 import com.test.buscape.api.core.model.Coordinates;
 
 /**
@@ -27,7 +27,7 @@ public class CommandBusinessImpl implements CommandBusiness {
 		for(int i=0; i < commandLine.length(); i++) {
 			Character command = commandLine.charAt(i);
 			
-			CompassChanges compassChanges = CompassChanges.getCompassChangeByCompassCurrent(coordinates.getCompassPoint());
+			CompassMapping compassChanges = CompassMapping.getCompassChangeByCompassCurrent(coordinates.getCompassPoint());
 			switch (Command.getCommandByCharacter(command)) {
 				case UP:
 					coordinates.addZ();

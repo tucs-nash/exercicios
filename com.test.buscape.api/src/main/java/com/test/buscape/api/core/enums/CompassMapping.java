@@ -5,7 +5,7 @@ package com.test.buscape.api.core.enums;
  * @author tbdea
  *
  */
-public enum CompassChanges {
+public enum CompassMapping {
 
 	CHANGE_FROM_NORTH(CompassPoint.NORTH, CompassPoint.WEST, CompassPoint.EAST),
 	CHANGE_FROM_SOUTH(CompassPoint.SOUTH, CompassPoint.EAST, CompassPoint.WEST),
@@ -17,7 +17,7 @@ public enum CompassChanges {
 	private final CompassPoint leftPoint;
 	private final CompassPoint rightPoint;
 	
-	private CompassChanges(CompassPoint currentPoint, CompassPoint leftPoint, CompassPoint rightPoint) {
+	private CompassMapping(CompassPoint currentPoint, CompassPoint leftPoint, CompassPoint rightPoint) {
 		this.currentPoint = currentPoint;
 		this.leftPoint = leftPoint;
 		this.rightPoint = rightPoint;
@@ -40,8 +40,8 @@ public enum CompassChanges {
 	 * @param current
 	 * @return
 	 */
-	public static CompassChanges getCompassChangeByCompassCurrent(CompassPoint current) {
-		for (CompassChanges compassChanges : values()) {
+	public static CompassMapping getCompassChangeByCompassCurrent(CompassPoint current) {
+		for (CompassMapping compassChanges : values()) {
 			if (compassChanges.getCurrentPoint().equals(current)) {
 				return compassChanges;
 			}
